@@ -1,0 +1,17 @@
+*
+!.gitignore
+!Makefile
+!Assignment.pdf
+
+!obj
+!obj/placeholder
+
+!src
+!src/main.cpp
+!src/placeholder
+
+!src/include
+!src/include/placeholder
+
+
+
