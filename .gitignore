@@ -8,10 +8,16 @@
 
 !src
 !src/main.cpp
+!src/stack.cpp
+!src/queue.cpp
 !src/placeholder
 
 !src/include
+!src/include/stack.h
+!src/include/queue.h
 !src/include/placeholder
 
+!example
+!example/W4-Linked_Lists_Class-Generic_Coding.cpp
 
 
