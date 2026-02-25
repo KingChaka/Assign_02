@@ -8,13 +8,9 @@
 
 !src
 !src/main.cpp
-!src/stack.cpp
-!src/queue.cpp
-!src/placeholder
+!src/stack.h
+!src/queue.h
 
-!src/include
-!src/include/stack.h
-!src/include/queue.h
 !src/include/placeholder
 
 !example
