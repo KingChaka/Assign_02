@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;   // for debug
+
 
 template <typename T>
 struct SNode {
@@ -19,12 +22,18 @@ class Stack {
 	    }
 	    
 		~Stack<T>(){
-		    while(cnt > 0) {
-		        SNode<T> * currentNode = head;
-		        for(unsigned short i=0; i < cnt; i++){
-		            currentNode = currentNode->next;
-		        }
+			SNode<T> * currentNode = head;
+			SNode<T> * previousNode = head;
+		    while(cnt > 0) {		        
+				cout << "count: "<< cnt <<", destruct" << endl;   //DEBUG
+				currentNode = head;
+				while(currentNode->next != NULL){
+		        	previousNode = currentNode;
+					currentNode = currentNode->next;
+		    		}
+				previousNode->next = NULL;
 		        delete currentNode;
+				cnt--;
 		    }
 		}
 		
@@ -35,18 +44,24 @@ class Stack {
 		
 		
 		bool push(T nodeData){
-		    bool isPushed = false;
+			bool isPushed = false;
 	        SNode<T> * currentNode = head;
 	        
 	        // create and update the new Node
 	        SNode<T> * nodePtr = new SNode<T>;
-	        nodePtr->data = nodeData;
-	        currentNode->next = nodePtr;
+			nodePtr->data = nodeData;	
+	        
 	        
 	        //Append the new Node to end of stack
-		    for(unsigned short i=0; i < cnt; i++){
-		        currentNode = currentNode->next;
-		    }
+			if(head == NULL){
+				head = nodePtr;
+			}
+			else {
+				while(currentNode->next != NULL){
+		        	currentNode = currentNode->next;
+		    	}
+				currentNode->next = nodePtr;
+			}
 		    cnt++;
 		    isPushed = true;
 		    
@@ -56,9 +71,8 @@ class Stack {
 		
 		
 		T top(){
-		    unsigned short location = cnt;
-		    T * currentNode = head;
-		    for(unsigned short i=0; i < cnt; i++){
+			SNode<T> * currentNode = head;
+		    while(currentNode->next != NULL){
 		        currentNode = currentNode->next;
 		    }
 		    return currentNode->data;
