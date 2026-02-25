@@ -2,26 +2,31 @@
 #include "stack.h"
 
 	Stack::Stack(){
-		std::cout << "-->stack constructor" << std::endl; 
+		head->next = NULL; 
 	}
 	
 	Stack::~Stack(){
-		std::cout << "-->stack destructor" << std::endl; 
+		// Nothing
 	}
 	
-	bool Stack::push(){ //needs argument for data pointer
-		bool isDone = false;
-		// code here
-		return isDone;
+	template<typename T>
+	bool Stack::push(T newNode){
+		bool isPushed = false;
+		SNode<T> * = new SNode<T>;
+		return isPushed;
 		
 	}
 	
-	int Stack::pop(){return 0;}
+	template<typename T>
+	SNode<T> Stack::pop(){return 0;}
 	
-	int Stack::top(){return 0;}
+	template<typename T>
+	SNode<T> Stack::top(){return 0;}
+	
 	
 	bool Stack::isEmpty(){
-		bool isConfirmed = true;
-		// code here
+		bool isConfirmed = false;
+		if(Stack::cnt < 1) isConfirmed = true;
 		return isConfirmed;
 	}
+
