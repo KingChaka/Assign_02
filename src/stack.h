@@ -25,7 +25,6 @@ class Stack {
 			SNode<T> * currentNode = head;
 			SNode<T> * previousNode = head;
 		    while(cnt > 0) {		        
-				cout << "count: "<< cnt <<", destruct" << endl;   //DEBUG
 				currentNode = head;
 				while(currentNode->next != NULL){
 		        	previousNode = currentNode;
@@ -70,24 +69,30 @@ class Stack {
 		}
 		
 		
-		T top(){
+		void top(T * dataSpace){
 			SNode<T> * currentNode = head;
 		    while(currentNode->next != NULL){
 		        currentNode = currentNode->next;
 		    }
-		    return currentNode->data;
+		    *dataSpace = currentNode->data;
 		        
 		}
 		
 		
-		T pop(){
-		    unsigned short location = cnt;
-		    T * currentNode = head;
-		    for(unsigned short i=0; i < cnt; i++){
-		        currentNode = currentNode->next;
-		    }
-		    return currentNode->data;
+		void pop(T * dataSpace){
+			SNode<T> * currentNode = head;
+			SNode<T> * previousNode = head;
 		    
+			while(currentNode->next != NULL){
+		        previousNode = currentNode;
+				currentNode = currentNode->next;
+		    }
+			
+			*dataSpace = currentNode->data;
+			previousNode->next = NULL;
+			delete currentNode;
+			currentNode = NULL;
+			cnt--;
 		}
 
 };

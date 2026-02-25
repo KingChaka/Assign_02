@@ -5,11 +5,24 @@
 int main(){
 
 	Stack<int> toyStack;
+	int dataholder;
 
+	//Additions
 	toyStack.push(5);
-	std::cout << toyStack.top() << std::endl;	
 	toyStack.push(4);
-	std::cout << toyStack.top() << std::endl;
+	toyStack.push(3);
+	toyStack.push(2);
+
+	//Removals
+	while( ! toyStack.isEmpty()){
+		toyStack.top(&dataholder);
+		std::cout << "Top: " << dataholder;
+		toyStack.pop(&dataholder);
+		std::cout << ",  Pop: " << dataholder << std::endl;
+	}
+
+	
+	//End
 	std::cout << "end of main" << std::endl;
 	return 0;
 }
