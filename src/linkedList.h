@@ -30,9 +30,13 @@ class LinerSinglyLinkedList : public SNode<T> {
         
     public:
         // CONSTRUCTORS and DESTRUCTOR
-        LinerSinglyLinkedList() : head(NULL) {}
+        LinerSinglyLinkedList() : head(NULL) { }
 
-        LinerSinglyLinkedList(const LinerSinglyLinkedList * lObj) { copyList(lObj); }
+        LinerSinglyLinkedList(LinerSinglyLinkedList<T>& lObj) {
+            head = new SNode<T>;
+            head->data = lObj.head->data;
+            copyList(&lObj);
+        }
         
         ~LinerSinglyLinkedList() {
             deleteList();
@@ -60,10 +64,10 @@ class LinerSinglyLinkedList : public SNode<T> {
             //Add to end of the list
             if(head == NULL) head = newNode;
             else {
-                while(currNode->next != NULL){
+                while(currNode->next != NULL){  // to the end of the linked list.
                     currNode = currNode->next;
                 }
-            currNode->next = newNode;
+            currNode->next = newNode;           // appends to the end of the linked list.
             }
             return true;     
         }
@@ -89,7 +93,11 @@ class LinerSinglyLinkedList : public SNode<T> {
             else {
                 wasRead = true;
                 SNode<T> * currNode = head;
-                head = currNode->next;
+                if(head->next == NULL){
+                    head = NULL;
+                } else {
+                    head = head->next;
+                }
                 delete currNode;
                 currNode = NULL;
             }
@@ -110,18 +118,15 @@ class LinerSinglyLinkedList : public SNode<T> {
 
 
         void copyList(LinerSinglyLinkedList * targetLL) {
-            targetLL->deleteList();        
-            if(targetLL->isEmptyList()) {
-                SNode<T> * currNode = head;
-                do{
-                    targetLL->addElmAtEnd(currNode->data);
-                    currNode = currNode->next;
-                } while( currNode != NULL );
-                delete currNode;
-            }
+            SNode<T> * currNode = targetLL->head;
+            T dataCpy;
+            do{
+                dataCpy = currNode->data;
+                insertElmAtEnd(&dataCpy);
+                currNode = currNode->next;
+            } while( currNode != NULL );
         }
 
 };
 
 #endif // SLLIST_H
-

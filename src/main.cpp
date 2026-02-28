@@ -8,8 +8,6 @@ int intHolder;
 char charHolder;
 
 Stack<int> intStack;
-Stack<int> stkCopy;
-
 Stack<char> charStack;
 
 Queue<int> intQueue;
@@ -25,7 +23,7 @@ void queueTestChar();
 int main(){
 
 
-	std::cout << "STACK TESTING (w/ INTEGERS)" << std::endl;
+	std::cout << "----- STACK TESTING (w/ INTEGERS) -----" << std::endl;
 	stackTestInt();
 	/*
 	std::cout << "\nTesting stack with chars" << std::endl;
@@ -54,18 +52,18 @@ void stackTestInt(){
 	
 	printForEmpty(intStack.isEmpty());
 	std::cout << "popping an empty stack..."<<std::endl;
-	std::cout << "was the attempt successful?: " << intStack.pop(&intHolder) <<std::endl;
+	std::cout << "successful pop?: " << intStack.pop(&intHolder) <<std::endl;
 	std::cout << "data written in the attempt: \"" << intHolder << "\"" <<std::endl;
 
 	std::cout << "\npopulating stack..."<<std::endl;
 	for(int i = NODE_CNT; i > 0; i--){
-		intHolder = i + 107;
+		intHolder = i + 0;
 		intStack.push(&intHolder);
 	}
 	printForEmpty(intStack.isEmpty());
 
 	std::cout << "copying the stack..."<<std::endl;
-	stkCopy = intStack;
+	Stack<int> stkCopy = intStack;
 
 	std::cout << "popping the stack copy...\n" << std::endl;
 	for(int i = 0; i < NODE_CNT; i++){
@@ -111,7 +109,7 @@ void queueTestInt(){
 	printForEmpty(intQueue.isEmpty());
 
 	for(int i = NODE_CNT; i > 0; i--){
-		intHolder = i + 107;
+		intHolder = i + 0;
 		intQueue.insert(&intHolder);
 	}
 	printForEmpty(intQueue.isEmpty());
