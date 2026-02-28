@@ -32,9 +32,7 @@ class LinerSinglyLinkedList : public SNode<T> {
         // CONSTRUCTORS and DESTRUCTOR
         LinerSinglyLinkedList() : head(NULL) { }
 
-        LinerSinglyLinkedList(LinerSinglyLinkedList<T>& lObj) {
-            head = new SNode<T>;
-            head->data = lObj.head->data;
+        LinerSinglyLinkedList(LinerSinglyLinkedList<T>& lObj) : head(NULL)  {
             copyList(&lObj);
         }
         

@@ -57,7 +57,7 @@ void stackTestInt(){
 
 	std::cout << "\npopulating stack..."<<std::endl;
 	for(int i = NODE_CNT; i > 0; i--){
-		intHolder = i + 0;
+		intHolder = i + 64;
 		intStack.push(&intHolder);
 	}
 	printForEmpty(intStack.isEmpty());
