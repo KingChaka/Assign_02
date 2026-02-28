@@ -24,7 +24,17 @@ class Queue {
 
 	public:
 		Queue() : head(NULL) , cnt(0) { }
-		~Queue();
+		~Queue(){
+			SNode<T> * currentNode;
+			SNode<T> * nextNode;
+			while(head != NULL){
+				currentNode = head;
+				nextNode = head->next;				
+				head = nextNode;
+				delete currentNode;
+				currentNode = NULL;
+			}
+		}
 		
 		bool insert(T nodeData){
 			bool isPushed = false;
