@@ -8,7 +8,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include <iostream>   // DEBUG
+#include "linkedList.h"
 
 /*template <typename T>
 struct SNode {
@@ -17,7 +17,7 @@ struct SNode {
 };*/
 
 template <typename T>
-class Queue {
+class Queue : public SNode<T> {
 	private:
 		SNode<T> * head;
 	    unsigned short cnt;
@@ -35,7 +35,7 @@ class Queue {
 				currentNode = NULL;
 			}
 		}
-		
+	/*	
 		bool insert(T nodeData){
 			bool isPushed = false;
 	        SNode<T> * currentNode = head;
@@ -81,7 +81,7 @@ class Queue {
 		    return cnt == 0;
 			return true;
 		}
-	
+	*/
 };
 
 

@@ -11,7 +11,7 @@
 #define SLLIST_H
 
 template <typename T>
-Class LinerSinglyLinkedList {
+class LinerSinglyLinkedList {
     private:
         SNode<T> * head;
         
@@ -19,14 +19,14 @@ Class LinerSinglyLinkedList {
         // CONSTRUCTOR and DESTRUCTOR
         LinerSinglyLinkedList() : head(NULL) {}
         
-        LinerSinglyLinkedList() {
+        ~LinerSinglyLinkedList() {
             deleteList();
         }
         
         // METHODS
-        isEmptyList(){ return head == NULL; }
+        bool isEmptyList(){ return head == NULL; }
         
-        void insertElmAtEnd(T * inData){
+        bool insertElmAtEnd(T * inData){
             SNode<T> * currNode = head;
             
             // Make a new node
@@ -37,7 +37,8 @@ Class LinerSinglyLinkedList {
             while( currNode->next != NULL){
                 currNode = currNode->next;
             }
-            currNode->next = newNode;            
+            currNode->next = newNode;
+            return true;     
         }
         
 
@@ -54,16 +55,17 @@ Class LinerSinglyLinkedList {
         }
 
 
-        void copyList(LinerSinglyLinkedList * targetLL) {
-            
+        bool copyList(LinerSinglyLinkedList * targetLL) {
+            SNode<T> * currNode;
             targetLL.addElmAtFront(head->data);
             while( currNode->next != NULL ) {
                 currNode = currNode->next;
                 targetLL.insertElmAtEnd(currNode->data);
             }
+            return true;
         }
         
-        deleteList(){
+        bool deleteList(){
             SNode<T> * currNode = head;
             SNode<T> * prevNode = head;
             
@@ -77,11 +79,11 @@ Class LinerSinglyLinkedList {
             }
             delete currNode;
             currNode = NULL;
-            
+            return true;
         }
         
         
-        nextElm(){}
+        T nextElm(){}
         
         bool addElmAtFront(T *inData){
             bool isAdded = true;

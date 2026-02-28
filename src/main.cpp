@@ -1,14 +1,15 @@
 #include <iostream>
-#include"stack.h"
+// #include"stack.h"
 #include "queue.h"
 
-void testStacks();
+// void testStacks();
 void testQueues();
 
 int main(){
 
-	testStacks();
-	testQueues();
+//	testStacks();
+	std::cout << std::endl;
+//	testQueues();
 	
 	//End
 	std::cout << "\nEnd of main" << std::endl;
@@ -16,7 +17,7 @@ int main(){
 }
 
 
-
+/*
 void testStacks(){
 	const int nodeCount = 10;
 	int intHolder;
@@ -50,7 +51,7 @@ void testStacks(){
 }
 
 
-/*--------------------------------------------------------------*/
+--------------------------------------------------------------
 
 void testQueues(){
 	const int nodeCount = 10;
@@ -83,3 +84,4 @@ void testQueues(){
 		std::cout << ",  Removed: " << charHolder << std::endl;
 	}		
 }
+*/
