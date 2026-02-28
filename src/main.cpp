@@ -1,36 +1,46 @@
 #include <iostream>
-// #include"stack.h"
+#include"stack.h"
 #include "queue.h"
 
-// void testStacks();
+const int NODE_CNT = 5;
+
+int intHolder;
+char charHolder;
+
+Stack<int> intStack;
+Stack<char> charStack;
+Queue<int> intQueue;
+Queue<char> charQueue;
+
+void testStacks();
 void testQueues();
+void printForEmpty(bool input);
 
 int main(){
 
-//	testStacks();
+	testStacks();
 	std::cout << std::endl;
-//	testQueues();
 	
-	//End
+	testQueues();
+
 	std::cout << "\nEnd of main" << std::endl;
+	
 	return 0;
 }
 
-
-/*
 void testStacks(){
-	const int nodeCount = 10;
-	int intHolder;
-	char charHolder;
+	printForEmpty(intStack.isEmpty());
+	printForEmpty(charStack.isEmpty());
 
-	Stack<int> intStack;
-	Stack<char> charStack;
-
-	for(int i = nodeCount; i > 0; i--){
+	for(int i = NODE_CNT; i > 0; i--){
 		//Stack Loading
-		intStack.push(i);
-		charStack.push(107-i);
+		intStack.push(&i);
+		char ascii = 107 + i;
+		charStack.push(&ascii);
 	}
+
+	printForEmpty(intStack.isEmpty());
+	printForEmpty(charStack.isEmpty());
 
 	//Removals
 	while( ! intStack.isEmpty()){
@@ -51,37 +61,19 @@ void testStacks(){
 }
 
 
---------------------------------------------------------------
-
 void testQueues(){
-	const int nodeCount = 10;
-	int intHolder;
-	char charHolder;
+	std::cout << "Empty? " << intQueue.isEmpty() << std::endl;
+	intQueue.insert(&intHolder);
+	std::cout << "Empty? " << intQueue.isEmpty() << std::endl;
+	intQueue.next(&intHolder);
+	std::cout << "Next: " << intHolder << std::endl;
+	intQueue.remove(&intHolder);
+	std::cout << "Empty? " << intQueue.isEmpty() << std::endl;
 
-	Queue<int> intQueue;
-	Queue<char> charQueue;
-
-	for(int i = nodeCount; i > 0; i--){
-		//Stack Loading
-		intQueue.insert(i);
-		charQueue.insert(107-i);
-	}
-
-	//Removals
-	while( ! intQueue.isEmpty()){
-		intQueue.next(&intHolder);
-		std::cout << "Next: " << intHolder;
-		intQueue.remove(&intHolder);
-		std::cout << ",  Removed: " << intHolder << std::endl;
-	}
-	
-	std::cout << std::endl;
-
-	while( ! charQueue.isEmpty()){
-		charQueue.next(&charHolder);
-		std::cout << "Next: " << charHolder;
-		charQueue.remove(&charHolder);
-		std::cout << ",  Removed: " << charHolder << std::endl;
-	}		
 }
-*/
+
+
+void printForEmpty(bool input){
+	if(input) std::cout << "The object is empty\n";
+	else{std::cout << "The object holds data.\n";}
+}

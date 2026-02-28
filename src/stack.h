@@ -8,94 +8,25 @@
 #ifndef STACK_H
 #define STACK_H
 
-template <typename T>
-struct SNode {
-    T data;
-    SNode<T>* next = NULL;
-};
+#include "linkedList.h"
 
 template <typename T>
-class Stack {
+class Stack : SNode<T>{
 	private:
-	    SNode<T> * head;
-	    unsigned short cnt;
+	    LinerSinglyLinkedList<T> stkList;
 	
 	public:
 	    // Constructor & Destructor
-		Stack() : head(NULL), cnt(0) {}
-		~Stack<T>(){
-			SNode<T> * currentNode = head;
-			SNode<T> * previousNode = head;
-		    while(cnt > 0) {		        
-				currentNode = head;
-				while(currentNode->next != NULL){
-		        	previousNode = currentNode;
-					currentNode = currentNode->next;
-		    		}
-				previousNode->next = NULL;
-		        delete currentNode;
-				cnt--;
-		    }
-		}
+		Stack() : stkList() {}
+		~Stack<T>(){ stkList.deleteList(); }
 		
+		bool isEmpty(){ return stkList.isEmptyList(); }
 		
-		bool isEmpty(){
-		    return cnt == 0;
-		    }
+		bool push(T * nodeData){ return stkList.addElmAtFront(nodeData); }
 		
+		bool top(T * nodeData){return stkList.nextElm(nodeData);}
 		
-		bool push(T nodeData){
-			bool isPushed = false;
-	        SNode<T> * currentNode = head;
-	        
-	        // create and update the new Node
-	        SNode<T> * nodePtr = new SNode<T>;
-			nodePtr->data = nodeData;	
-	        
-	        
-	        //Append the new Node to end of stack
-			if(head == NULL){
-				head = nodePtr;
-			}
-			else {
-				while(currentNode->next != NULL){
-		        	currentNode = currentNode->next;
-		    	}
-				currentNode->next = nodePtr;
-			}
-		    cnt++;
-		    isPushed = true;
-		    
-		    //Success or Fail Indication
-	        return isPushed;	
-		}
-		
-		
-		void top(T * dataSpace){
-			SNode<T> * currentNode = head;
-		    while(currentNode->next != NULL){
-		        currentNode = currentNode->next;
-		    }
-		    *dataSpace = currentNode->data;
-		        
-		}
-		
-		
-		void pop(T * dataSpace){
-			SNode<T> * currentNode = head;
-			SNode<T> * previousNode = head;
-		    
-			while(currentNode->next != NULL){
-		        previousNode = currentNode;
-				currentNode = currentNode->next;
-		    }
-			
-			*dataSpace = currentNode->data;
-			previousNode->next = NULL;
-			delete currentNode;
-			currentNode = NULL;
-			cnt--;
-		}
+		bool pop(T * nodeData){ return stkList.removefromFront(nodeData); }
 
 };
 

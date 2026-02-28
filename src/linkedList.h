@@ -11,7 +11,7 @@
 #define SLLIST_H
 
 template <typename T>
-class LinerSinglyLinkedList {
+class LinerSinglyLinkedList : public SNode<T> {
     private:
         SNode<T> * head;
         
@@ -25,6 +25,15 @@ class LinerSinglyLinkedList {
         
         // METHODS
         bool isEmptyList(){ return head == NULL; }
+
+        bool addElmAtFront(T *inData){
+            bool isAdded = true;
+            SNode<T> * newHead = new SNode<T>;
+            newHead->data = *inData;
+            newHead->next = head;
+            head = newHead;
+            return isAdded;
+        }
         
         bool insertElmAtEnd(T * inData){
             SNode<T> * currNode = head;
@@ -34,24 +43,42 @@ class LinerSinglyLinkedList {
             newNode->data = *inData;
             
             //Add to end of the list
-            while( currNode->next != NULL){
-                currNode = currNode->next;
-            }
+            if(head == NULL) head = newNode;
+            else {
+                while(currNode->next != NULL){
+                    currNode = currNode->next;
+                }
             currNode->next = newNode;
+            }
             return true;     
         }
         
 
-        bool removefromFront(){
-            bool wasRemoved = false;
-            if( ! isEmptyList() ){
+        bool removefromFront(T * inData){
+            bool wasRead = false;
+            if (head == NULL){}
+            else {
                 SNode<T> * currNode = head;
+                *inData = head->data;
                 head = head->next;
                 delete currNode;
                 currNode = NULL;
-                wasRemoved = true;
+                wasRead = true;
             }
-            return wasRemoved;
+            return wasRead;
+        }
+
+        bool nextElm(T * inData){
+            bool wasRead = false;
+            if(head == NULL){}
+            else{
+                *inData = head->data;
+            }    
+            return wasRead;}
+        
+        void deleteList(){
+            T dummySpace;
+            while( head != NULL ) { removefromFront(&dummySpace);}
         }
 
 
@@ -64,35 +91,7 @@ class LinerSinglyLinkedList {
             }
             return true;
         }
-        
-        bool deleteList(){
-            SNode<T> * currNode = head;
-            SNode<T> * prevNode = head;
-            
-            while( head->next != NULL ) {
-                while( currNode->next != NULL ) {
-                    prevNode = currNode;
-                    currNode = currNode->next;            
-                }
-            prevNode->next = NULL;
-            delete currNode;
-            }
-            delete currNode;
-            currNode = NULL;
-            return true;
-        }
-        
-        
-        T nextElm(){}
-        
-        bool addElmAtFront(T *inData){
-            bool isAdded = true;
-            SNode<T> * newHead = new SNode<T>;
-            newHead->data = *inData;
-            newHead->next = head;
-            head = newHead;
-            return isAdded;
-        }
+
 };
 
 #endif // SLLIST_H

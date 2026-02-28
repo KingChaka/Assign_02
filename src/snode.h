@@ -11,10 +11,11 @@
 template <typename T>
 class SNode {
     protected:
-        T data;
-        SNode<T> * next;
+
     public:
         SNode() : next(NULL) {}
+        SNode<T> * next;
+        T data;
 };
 
 #endif // SNODE_H
