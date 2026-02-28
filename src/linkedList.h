@@ -29,8 +29,10 @@ class LinerSinglyLinkedList : public SNode<T> {
         SNode<T> * head;
         
     public:
-        // CONSTRUCTOR and DESTRUCTOR
+        // CONSTRUCTORS and DESTRUCTOR
         LinerSinglyLinkedList() : head(NULL) {}
+
+        LinerSinglyLinkedList(const LinerSinglyLinkedList * lObj) { copyList(lObj); }
         
         ~LinerSinglyLinkedList() {
             deleteList();
@@ -71,12 +73,25 @@ class LinerSinglyLinkedList : public SNode<T> {
             bool wasRead = false;
             if (head == NULL){}
             else {
+                wasRead = true;
                 SNode<T> * currNode = head;
-                *inData = head->data;
-                head = head->next;
+                *inData = currNode->data;
+                head = currNode->next;
                 delete currNode;
                 currNode = NULL;
+            }
+            return wasRead;
+        }
+
+        bool removefromFront(){
+            bool wasRead = false;
+            if (head == NULL){}
+            else {
                 wasRead = true;
+                SNode<T> * currNode = head;
+                head = currNode->next;
+                delete currNode;
+                currNode = NULL;
             }
             return wasRead;
         }
@@ -90,19 +105,20 @@ class LinerSinglyLinkedList : public SNode<T> {
             return wasRead;}
         
         void deleteList(){
-            T dummySpace;
-            while( head != NULL ) { removefromFront(&dummySpace);}
+            while( head != NULL ) { removefromFront();}
         }
 
 
-        bool copyList(LinerSinglyLinkedList * targetLL) {
-            SNode<T> * currNode;
-            targetLL.addElmAtFront(head->data);
-            while( currNode->next != NULL ) {
-                currNode = currNode->next;
-                targetLL.insertElmAtEnd(currNode->data);
+        void copyList(LinerSinglyLinkedList * targetLL) {
+            targetLL->deleteList();        
+            if(targetLL->isEmptyList()) {
+                SNode<T> * currNode = head;
+                do{
+                    targetLL->addElmAtEnd(currNode->data);
+                    currNode = currNode->next;
+                } while( currNode != NULL );
+                delete currNode;
             }
-            return true;
         }
 
 };

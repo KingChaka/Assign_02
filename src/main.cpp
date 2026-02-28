@@ -8,6 +8,8 @@ int intHolder;
 char charHolder;
 
 Stack<int> intStack;
+Stack<int> stkCopy;
+
 Stack<char> charStack;
 
 Queue<int> intQueue;
@@ -22,8 +24,10 @@ void queueTestChar();
 
 int main(){
 
-	std::cout << "Testing stack with integers" << std::endl;
+
+	std::cout << "STACK TESTING (w/ INTEGERS)" << std::endl;
 	stackTestInt();
+	/*
 	std::cout << "\nTesting stack with chars" << std::endl;
 	stackTestChar();
 
@@ -32,6 +36,7 @@ int main(){
 	queueTestInt();
 	std::cout << "\nTesting queue with chars" << std::endl;
 	queueTestChar();
+	*/
 
 	std::cout << "\nEnd of main" << std::endl;
 	
@@ -48,21 +53,32 @@ int main(){
 void stackTestInt(){
 	
 	printForEmpty(intStack.isEmpty());
+	std::cout << "popping an empty stack..."<<std::endl;
+	std::cout << "was the attempt successful?: " << intStack.pop(&intHolder) <<std::endl;
+	std::cout << "data written in the attempt: \"" << intHolder << "\"" <<std::endl;
 
+	std::cout << "\npopulating stack..."<<std::endl;
 	for(int i = NODE_CNT; i > 0; i--){
 		intHolder = i + 107;
 		intStack.push(&intHolder);
 	}
 	printForEmpty(intStack.isEmpty());
 
+	std::cout << "copying the stack..."<<std::endl;
+	stkCopy = intStack;
+
+	std::cout << "popping the stack copy...\n" << std::endl;
 	for(int i = 0; i < NODE_CNT; i++){
-		intStack.top(&intHolder);
+		stkCopy.top(&intHolder);
 		std::cout << "Top: " << intHolder;
-		intStack.pop(&intHolder);
+		stkCopy.pop(&intHolder);
 		std::cout << ",  Pop: " << intHolder << std::endl;
 	}
-	
+
+	std::cout << "\nthe original stack" << std::endl;
 	printForEmpty(intStack.isEmpty());
+	std::cout << "the copied stack" << std::endl;
+	printForEmpty(stkCopy.isEmpty());
 
 }
 
@@ -84,6 +100,7 @@ void stackTestChar(){
 	}
 	
 	printForEmpty(charStack.isEmpty());
+	intStack.pop(&intHolder);
 
 }
 
@@ -107,6 +124,7 @@ void queueTestInt(){
 	}
 	
 	printForEmpty(intQueue.isEmpty());
+	intQueue.remove(&intHolder);
 
 }
 
@@ -128,11 +146,12 @@ void queueTestChar(){
 	}
 	
 	printForEmpty(charStack.isEmpty());
+	intQueue.remove(&intHolder);
 
 }
 
 
 void printForEmpty(bool input){
-	if(input) std::cout << "The object is empty\n";
-	else{std::cout << "The object holds data.\n";}
+	if(input) std::cout << "   The object is empty\n";
+	else{std::cout << "   The object holds data.\n";}
 }
