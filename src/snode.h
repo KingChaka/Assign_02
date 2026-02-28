@@ -9,7 +9,7 @@
 #define SNODE_H
 
 template <typename T>
-Class SNode {
+class SNode {
     protected:
         T data;
         SNode<T> * next;

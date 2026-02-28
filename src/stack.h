@@ -1,6 +1,12 @@
-#include <iostream>
-using namespace std;   // for debug
+/* *************************************************
+*  Name: Brandon Crenshaw
+*  Assignment: #2 - Stack / Queue / Linked Lists
+*  Purpose: The class for the stack.
+*
+************************************************* */
 
+#ifndef STACK_H
+#define STACK_H
 
 template <typename T>
 struct SNode {
@@ -16,11 +22,7 @@ class Stack {
 	
 	public:
 	    // Constructor & Destructor
-		Stack(){
-		    head = NULL;
-	        cnt = 0;
-	    }
-	    
+		Stack() : head(NULL), cnt(0) {}
 		~Stack<T>(){
 			SNode<T> * currentNode = head;
 			SNode<T> * previousNode = head;
@@ -97,3 +99,4 @@ class Stack {
 
 };
 
+#endif // STACK_H
