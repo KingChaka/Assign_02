@@ -5,10 +5,10 @@
 *
 ************************************************* */
 
+#include "linkedList.h"
+
 #ifndef QUEUE_H
 #define QUEUE_H
-
-#include "linkedList.h"
 
 template <typename T>
 class Queue : public SNode<T> {

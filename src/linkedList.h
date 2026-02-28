@@ -5,7 +5,20 @@
 *
 ************************************************* */
 
-#include "snode.h"
+#ifndef SNODE_H
+#define SNODE_H
+
+template <typename T>
+class SNode {
+    protected:
+
+    public:
+        SNode() : next(NULL) {}
+        SNode<T> * next;
+        T data;
+};
+#endif // SNODE_H
+
 
 #ifndef SLLIST_H
 #define SLLIST_H

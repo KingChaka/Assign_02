@@ -5,10 +5,10 @@
 *
 ************************************************* */
 
+#include "linkedList.h"
+
 #ifndef STACK_H
 #define STACK_H
-
-#include "linkedList.h"
 
 template <typename T>
 class Stack : SNode<T>{

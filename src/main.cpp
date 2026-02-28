@@ -9,66 +9,125 @@ char charHolder;
 
 Stack<int> intStack;
 Stack<char> charStack;
+
 Queue<int> intQueue;
 Queue<char> charQueue;
 
-void testStacks();
-void testQueues();
 void printForEmpty(bool input);
+void stackTestInt();
+void stackTestChar();
+void queueTestInt();
+void queueTestChar();
+
 
 int main(){
 
-	testStacks();
-	std::cout << std::endl;
-	
-	testQueues();
+	std::cout << "Testing stack with integers" << std::endl;
+	stackTestInt();
+	std::cout << "\nTesting stack with chars" << std::endl;
+	stackTestChar();
+
+	//For Queue testing
+	std::cout << "\nTesting queue with integers" << std::endl;
+	queueTestInt();
+	std::cout << "\nTesting queue with chars" << std::endl;
+	queueTestChar();
 
 	std::cout << "\nEnd of main" << std::endl;
 	
 	return 0;
 }
 
-void testStacks(){
+
+
+
+
+
+
+
+void stackTestInt(){
+	
 	printForEmpty(intStack.isEmpty());
-	printForEmpty(charStack.isEmpty());
 
 	for(int i = NODE_CNT; i > 0; i--){
-		//Stack Loading
-		intStack.push(&i);
-		char ascii = 107 + i;
-		charStack.push(&ascii);
+		intHolder = i + 107;
+		intStack.push(&intHolder);
 	}
-
 	printForEmpty(intStack.isEmpty());
-	printForEmpty(charStack.isEmpty());
 
-	//Removals
-	while( ! intStack.isEmpty()){
+	for(int i = 0; i < NODE_CNT; i++){
 		intStack.top(&intHolder);
 		std::cout << "Top: " << intHolder;
 		intStack.pop(&intHolder);
 		std::cout << ",  Pop: " << intHolder << std::endl;
 	}
 	
-	std::cout << std::endl;
+	printForEmpty(intStack.isEmpty());
 
-	while( ! charStack.isEmpty()){
+}
+
+void stackTestChar(){
+	
+	printForEmpty(charStack.isEmpty());
+
+	for(int i = NODE_CNT; i > 0; i--){
+		charHolder = i + 107;
+		charStack.push(&charHolder);
+	}
+	printForEmpty(charStack.isEmpty());
+
+	for(int i = 0; i < NODE_CNT; i++){
 		charStack.top(&charHolder);
 		std::cout << "Top: " << charHolder;
 		charStack.pop(&charHolder);
 		std::cout << ",  Pop: " << charHolder << std::endl;
-	}		
+	}
+	
+	printForEmpty(charStack.isEmpty());
+
 }
 
 
-void testQueues(){
-	std::cout << "Empty? " << intQueue.isEmpty() << std::endl;
-	intQueue.insert(&intHolder);
-	std::cout << "Empty? " << intQueue.isEmpty() << std::endl;
-	intQueue.next(&intHolder);
-	std::cout << "Next: " << intHolder << std::endl;
-	intQueue.remove(&intHolder);
-	std::cout << "Empty? " << intQueue.isEmpty() << std::endl;
+
+void queueTestInt(){
+	
+	printForEmpty(intQueue.isEmpty());
+
+	for(int i = NODE_CNT; i > 0; i--){
+		intHolder = i + 107;
+		intQueue.insert(&intHolder);
+	}
+	printForEmpty(intQueue.isEmpty());
+
+	for(int i = 0; i < NODE_CNT; i++){
+		intQueue.next(&intHolder);
+		std::cout << "Next: " << intHolder;
+		intQueue.remove(&intHolder);
+		std::cout << ",  Removed: " << intHolder << std::endl;
+	}
+	
+	printForEmpty(intQueue.isEmpty());
+
+}
+
+void queueTestChar(){
+	
+	printForEmpty(charQueue.isEmpty());
+
+	for(int i = NODE_CNT; i > 0; i--){
+		charHolder = i + 107;
+		charQueue.insert(&charHolder);
+	}
+	printForEmpty(charQueue.isEmpty());
+
+	for(int i = 0; i < NODE_CNT; i++){
+		charQueue.next(&charHolder);
+		std::cout << "Next: " << charHolder;
+		charQueue.remove(&charHolder);
+		std::cout << ",  Removed: " << charHolder << std::endl;
+	}
+	
+	printForEmpty(charStack.isEmpty());
 
 }
 
