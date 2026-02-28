@@ -8,7 +8,6 @@
 
 !src
 !src/main.cpp
-!src/snode.h
 !src/linkedList.h
 !src/stack.h
 !src/queue.h
