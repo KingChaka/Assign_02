@@ -2,15 +2,18 @@
 !.gitignore
 !Makefile
 !Assignment.pdf
+!Coding Assignment 2.odt
+!Coding Assignment 2.pdf
 
 !obj
 !obj/placeholder
 
 !src
 !src/main.cpp
-!src/linkedList.h
+!src/test.cpp
 !src/stack.h
 !src/queue.h
+!src/linkedList.h
 
 !src/include/placeholder
 

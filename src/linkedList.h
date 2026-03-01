@@ -67,7 +67,7 @@ class LinerSinglyLinkedList : public SNode<T> {
 
         bool removefromFront(T * inData){                                           // make 2nd node the head, delete previous head
             bool wasRead = false;
-            if (head == NULL){*inData = 0x0;}
+            if (head == NULL){ }
             else {
                 wasRead = true;
                 SNode<T> * currNode = head;
@@ -95,7 +95,7 @@ class LinerSinglyLinkedList : public SNode<T> {
 
         bool nextElm(T * inData){                                                   // reports what data is in the head node
             bool wasRead = false;
-            if(head == NULL){*inData = 0x0;}
+            if(head == NULL){ }
             else{ *inData = head->data; }
             return wasRead;}
 
