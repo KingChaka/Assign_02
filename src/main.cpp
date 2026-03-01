@@ -1,3 +1,9 @@
+/* *************************************************
+*  Name: Brandon Crenshaw
+*  Assignment: #2 - Stack / Queue / Linked Lists
+*  Purpose: This is ADT Tester of the project.
+*
+************************************************* */
 #include <iostream>
 #include"stack.h"
 #include "queue.h"
@@ -9,10 +15,10 @@ char charHolder;
 
 Stack<int> intStack;
 Stack<char> charStack;
-
 Queue<int> intQueue;
 Queue<char> charQueue;
 
+// PROTYPES OF SUPPORTING TEST FUNCTIONS
 void printForEmpty(bool input);
 void stackTestInt();
 void stackTestChar();
@@ -21,8 +27,16 @@ void queueTestChar();
 
 
 int main(){
-
-
+/* **********************************
+ * This function is the application driver. It tests the stack ADT with integers and
+ * then with chars. It then tests the queue ADT with integers and then chars as well.
+ * vehicle instances stored in memory.
+ *
+ * @param na : na
+ * @return (int) : application exit code 0
+ * @exception na : na
+ * @note na
+ * **********************************/
 	std::cout << "----- STACK TESTING (w/ INTEGERS) -----" << std::endl;
 	stackTestInt();
 	/*
@@ -44,12 +58,20 @@ int main(){
 
 
 
-
-
-
-
+/*
+******* *********************** Supporting Test Functions *********************** *******
+// STACK FUNCTIONS *********************************************************************/
 void stackTestInt(){
-	
+/* **********************************
+ * This function is tests if stack is empty and what happens when trying to pop an empty
+ * stack. It then fills the stack, copies it, and completely depops the copy.
+ * It finishes by testing if both stack are empty.
+ *
+ * @param na : na
+ * @return (int) : application exit code 0
+ * @exception na : na
+ * @note na
+ * **********************************/	
 	printForEmpty(intStack.isEmpty());
 	std::cout << "popping an empty stack..."<<std::endl;
 	std::cout << "successful pop?: " << intStack.pop(&intHolder) <<std::endl;
@@ -103,7 +125,7 @@ void stackTestChar(){
 }
 
 
-
+// QUEUE FUNCTIONS **********************************************************************
 void queueTestInt(){
 	
 	printForEmpty(intQueue.isEmpty());
