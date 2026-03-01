@@ -12,21 +12,18 @@
 
 template <typename T>
 class Queue : public SNode<T> {
-	private:
-		LinerSinglyLinkedList<T> qlist;
+    private:
+        LinerSinglyLinkedList<T> qlist;
 
-	public:
-		Queue() { }
-		~Queue(){ qlist.deleteList(); }
+    public:
+        Queue() { }
+        ~Queue(){ qlist.deleteList(); }
 
-		bool isEmpty(){	return qlist.isEmptyList(); }
-		
-		bool insert(T * nodeData){ return qlist.insertElmAtEnd(nodeData); }
-
-		bool remove(T * nodeData){ return qlist.removefromFront(nodeData); }
-
-		bool next(T * nodeData){ return qlist.nextElm(nodeData);}
-		
+        // No descriptions: These methods only call the linked list methods.
+        bool isEmpty(){ return qlist.isEmptyList(); }
+        bool insert(T * nodeData){ return qlist.insertElmAtEnd(nodeData); }
+        bool remove(T * nodeData){ return qlist.removefromFront(nodeData); }
+        bool next(T * nodeData){ return qlist.nextElm(nodeData);}
 };
 
 #endif  // QUEUE_H

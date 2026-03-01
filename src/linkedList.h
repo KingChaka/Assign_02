@@ -9,7 +9,7 @@
 #define SNODE_H
 
 template <typename T>
-class SNode {
+class SNode {                           // basic node class
     protected:
 
     public:
@@ -27,23 +27,17 @@ template <typename T>
 class LinerSinglyLinkedList : public SNode<T> {
     private:
         SNode<T> * head;
-        
+
     public:
         // CONSTRUCTORS and DESTRUCTOR
         LinerSinglyLinkedList() : head(NULL) { }
+        LinerSinglyLinkedList(LinerSinglyLinkedList<T>& lObj) : head(NULL)  { copyList(&lObj); }  // copy constructor
+        ~LinerSinglyLinkedList() { deleteList(); }
 
-        LinerSinglyLinkedList(LinerSinglyLinkedList<T>& lObj) : head(NULL)  {
-            copyList(&lObj);
-        }
-        
-        ~LinerSinglyLinkedList() {
-            deleteList();
-        }
-        
         // METHODS
-        bool isEmptyList(){ return head == NULL; }
+        bool isEmptyList(){ return head == NULL; }                                  // simple getter method
 
-        bool addElmAtFront(T *inData){
+        bool addElmAtFront(T *inData){                                              // create node make it new head
             bool isAdded = true;
             SNode<T> * newHead = new SNode<T>;
             newHead->data = *inData;
@@ -51,29 +45,29 @@ class LinerSinglyLinkedList : public SNode<T> {
             head = newHead;
             return isAdded;
         }
-        
-        bool insertElmAtEnd(T * inData){
+
+        bool insertElmAtEnd(T * inData){                                            // create node, traverse to tail, add there
             SNode<T> * currNode = head;
-            
+
             // Make a new node
             SNode<T> * newNode = new SNode<T>;
             newNode->data = *inData;
-            
-            //Add to end of the list
+
+            //Add to the tail
             if(head == NULL) head = newNode;
             else {
-                while(currNode->next != NULL){  // to the end of the linked list.
+                while(currNode->next != NULL){                  // to the end of the linked list.
                     currNode = currNode->next;
                 }
-            currNode->next = newNode;           // appends to the end of the linked list.
+            currNode->next = newNode;                           // appends to the end of the linked list.
             }
-            return true;     
+            return true;
         }
-        
 
-        bool removefromFront(T * inData){
+
+        bool removefromFront(T * inData){                                           // make 2nd node the head, delete previous head
             bool wasRead = false;
-            if (head == NULL){}
+            if (head == NULL){*inData = 0x0;}
             else {
                 wasRead = true;
                 SNode<T> * currNode = head;
@@ -85,37 +79,31 @@ class LinerSinglyLinkedList : public SNode<T> {
             return wasRead;
         }
 
-        bool removefromFront(){
+        bool removefromFront(){                                                     // overridde for delete all that doesn't write node data
             bool wasRead = false;
             if (head == NULL){}
             else {
                 wasRead = true;
                 SNode<T> * currNode = head;
-                if(head->next == NULL){
-                    head = NULL;
-                } else {
-                    head = head->next;
-                }
+                if(head->next == NULL){ head = NULL;}
+                else { head = head->next; }
                 delete currNode;
                 currNode = NULL;
             }
             return wasRead;
         }
 
-        bool nextElm(T * inData){
+        bool nextElm(T * inData){                                                   // reports what data is in the head node
             bool wasRead = false;
-            if(head == NULL){}
-            else{
-                *inData = head->data;
-            }    
+            if(head == NULL){*inData = 0x0;}
+            else{ *inData = head->data; }
             return wasRead;}
-        
-        void deleteList(){
+
+        void deleteList(){                                                          // removes all nodes starting from the head end
             while( head != NULL ) { removefromFront();}
         }
 
-
-        void copyList(LinerSinglyLinkedList * targetLL) {
+        void copyList(LinerSinglyLinkedList * targetLL) {                           // copies each node one-by-one into another linked-list
             SNode<T> * currNode = targetLL->head;
             T dataCpy;
             do{
@@ -124,7 +112,7 @@ class LinerSinglyLinkedList : public SNode<T> {
                 currNode = currNode->next;
             } while( currNode != NULL );
         }
-
 };
 
 #endif // SLLIST_H
+

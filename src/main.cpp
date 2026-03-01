@@ -35,7 +35,7 @@ void stackTester(){
  * @param      na : na
  * @return (void) : no return
  * @exception  na : na
- * @note            designed for numerical and char datatypes
+ * @note            designed for numerical and char datatypes; for int, 0 is read from empty entries
  * **********************************/
     Stack<T> testStack;
     T dataHolder;
@@ -79,7 +79,7 @@ void queueTester(){
  * @param      na : na
  * @return (void) : no return
  * @exception  na : na
- * @note            designed for numerical and char datatypes
+ * @note            designed for numerical and char datatypes; for int, 0 is read from empty entries
  * **********************************/
     Queue<T> testQueue;
     T dataHolder;

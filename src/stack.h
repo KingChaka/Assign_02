@@ -11,23 +11,20 @@
 #define STACK_H
 
 template <typename T>
-class Stack : SNode<T>{
-	private:
-	    LinerSinglyLinkedList<T> stkList;
-	
-	public:
-	    // Constructor & Destructor
-		Stack() : stkList() {}
-		~Stack<T>(){ stkList.deleteList(); }
-		
-		bool isEmpty(){ return stkList.isEmptyList(); }
-		
-		bool push(T * nodeData){ return stkList.addElmAtFront(nodeData); }
-		
-		bool top(T * nodeData){return stkList.nextElm(nodeData);}
-		
-		bool pop(T * nodeData){ return stkList.removefromFront(nodeData); }
+class Stack : public SNode<T>{
+    private:
+        LinerSinglyLinkedList<T> stkList;
 
+    public:
+        // Constructor & Destructor
+        Stack() : stkList() {}
+        ~Stack<T>(){ stkList.deleteList(); }
+
+        // No descriptions: These methods only call the linked list methods.
+        bool isEmpty(){ return stkList.isEmptyList(); }
+        bool push(T * nodeData){ return stkList.addElmAtFront(nodeData); }
+        bool top(T * nodeData){return stkList.nextElm(nodeData);}
+        bool pop(T * nodeData){ return stkList.removefromFront(nodeData); }
 };
 
 #endif // STACK_H
