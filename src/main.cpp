@@ -8,60 +8,17 @@
 #include"stack.h"
 #include "queue.h"
 
+
 const int NODE_CNT = 5;
 
-int intHolder;
-char charHolder;
-
-Stack<int> intStack;
-Stack<char> charStack;
-Queue<int> intQueue;
-Queue<char> charQueue;
-
-// PROTYPES OF SUPPORTING TEST FUNCTIONS
-void printForEmpty(bool input);
-void stackTestInt();
-void stackTestChar();
-void queueTestInt();
-void queueTestChar();
-
-
-int main(){
-/* **********************************
- * This function is the application driver. It tests the stack ADT with integers and
- * then with chars. It then tests the queue ADT with integers and then chars as well.
- * vehicle instances stored in memory.
- *
- * @param na : na
- * @return (int) : application exit code 0
- * @exception na : na
- * @note na
- * **********************************/
-	std::cout << "----- STACK TESTING (w/ INTEGERS) -----" << std::endl;
-	stackTestInt();
-	/*
-	std::cout << "\nTesting stack with chars" << std::endl;
-	stackTestChar();
-
-	//For Queue testing
-	std::cout << "\nTesting queue with integers" << std::endl;
-	queueTestInt();
-	std::cout << "\nTesting queue with chars" << std::endl;
-	queueTestChar();
-	*/
-
-	std::cout << "\nEnd of main" << std::endl;
-	
-	return 0;
+void printForEmpty(bool input){
+	if(input) std::cout << "   The object is empty\n";
+	else{std::cout << "   The object holds data.\n";}
 }
 
-
-
-
-/*
-******* *********************** Supporting Test Functions *********************** *******
-// STACK FUNCTIONS *********************************************************************/
-void stackTestInt(){
+//TEMPLATES FOR EACH ADT TEST
+template<typename T>
+void stackTester(){
 /* **********************************
  * This function is tests if stack is empty and what happens when trying to pop an empty
  * stack. It then fills the stack, copies it, and completely depops the copy.
@@ -70,108 +27,113 @@ void stackTestInt(){
  * @param na : na
  * @return (int) : application exit code 0
  * @exception na : na
- * @note na
+ * @note 		   designed for numerical and char datatypes 
  * **********************************/	
-	printForEmpty(intStack.isEmpty());
+	Stack<T> testStack;	
+ 	T dataHolder;
+	
+	printForEmpty(testStack.isEmpty());
 	std::cout << "popping an empty stack..."<<std::endl;
-	std::cout << "successful pop?: " << intStack.pop(&intHolder) <<std::endl;
-	std::cout << "data written in the attempt: \"" << intHolder << "\"" <<std::endl;
+	std::cout << "successful pop?: " << testStack.pop(&dataHolder) <<std::endl;
+	std::cout << "data written in the attempt: \"" << dataHolder << "\"" <<std::endl;
 
 	std::cout << "\npopulating stack..."<<std::endl;
 	for(int i = NODE_CNT; i > 0; i--){
-		intHolder = i + 64;
-		intStack.push(&intHolder);
+		dataHolder = i + 64;
+		testStack.push(&dataHolder);
 	}
-	printForEmpty(intStack.isEmpty());
+	printForEmpty(testStack.isEmpty());
 
 	std::cout << "copying the stack..."<<std::endl;
-	Stack<int> stkCopy = intStack;
+	Stack<T> queCopy = testStack;
 
 	std::cout << "popping the stack copy...\n" << std::endl;
 	for(int i = 0; i < NODE_CNT; i++){
-		stkCopy.top(&intHolder);
-		std::cout << "Top: " << intHolder;
-		stkCopy.pop(&intHolder);
-		std::cout << ",  Pop: " << intHolder << std::endl;
+		queCopy.top(&dataHolder);
+		std::cout << "Top: " << dataHolder;
+		queCopy.pop(&dataHolder);
+		std::cout << ",  Pop: " << dataHolder << std::endl;
 	}
 
 	std::cout << "\nthe original stack" << std::endl;
-	printForEmpty(intStack.isEmpty());
+	printForEmpty(testStack.isEmpty());
 	std::cout << "the copied stack" << std::endl;
-	printForEmpty(stkCopy.isEmpty());
+	printForEmpty(queCopy.isEmpty());
 
 }
 
-void stackTestChar(){
+template<typename T>
+void queueTester(){
+/* **********************************
+ * This function is tests if queue is empty and what happens when trying to remove from
+ * the empty queue. It then fills the queue, copies it, and completely depops the copy.
+ * It finishes by testing if both queues are empty.
+ *
+ * @param na : na
+ * @return (int) : application exit code 0
+ * @exception na : na
+ * @note 		   designed for numerical and char datatypes 
+ * **********************************/	
+	Queue<T> testQueue;	
+ 	T dataHolder;
 	
-	printForEmpty(charStack.isEmpty());
+	printForEmpty(testQueue.isEmpty());
+	std::cout << "removing from an empty queue..."<<std::endl;
+	std::cout << "successful removal?: " << testQueue.remove(&dataHolder) <<std::endl;
+	std::cout << "data written in the attempt: \"" << dataHolder << "\"" <<std::endl;
 
+	std::cout << "\npopulating queue..."<<std::endl;
 	for(int i = NODE_CNT; i > 0; i--){
-		charHolder = i + 107;
-		charStack.push(&charHolder);
+		dataHolder = i + 64;
+		testQueue.insert(&dataHolder);
 	}
-	printForEmpty(charStack.isEmpty());
+	printForEmpty(testQueue.isEmpty());
 
+	std::cout << "copying the queue..."<<std::endl;
+	Queue<T> queCopy = testQueue;
+
+	std::cout << "removing from the copied queue...\n" << std::endl;
 	for(int i = 0; i < NODE_CNT; i++){
-		charStack.top(&charHolder);
-		std::cout << "Top: " << charHolder;
-		charStack.pop(&charHolder);
-		std::cout << ",  Pop: " << charHolder << std::endl;
+		queCopy.next(&dataHolder);
+		std::cout << "Next: " << dataHolder;
+		queCopy.remove(&dataHolder);
+		std::cout << ",  Removed: " << dataHolder << std::endl;
 	}
-	
-	printForEmpty(charStack.isEmpty());
-	intStack.pop(&intHolder);
+
+	std::cout << "\nthe original queue" << std::endl;
+	printForEmpty(testQueue.isEmpty());
+	std::cout << "the copied queue" << std::endl;
+	printForEmpty(queCopy.isEmpty());
 
 }
 
 
-// QUEUE FUNCTIONS **********************************************************************
-void queueTestInt(){
+int main(){
+/* *******************************************************************************************************************************
+ * This function is the application driver. It tests the stack ADT with integers and
+ * then with chars. It then tests the queue ADT with integers and then chars as well.
+ * vehicle instances stored in memory.
+ *
+ * @param na : na
+ * @return (int) : application exit code 0
+ * @exception na : na
+ * @note na
+ * *******************************************************************************************************************************/
+	std::cout << "-------------------------------------------------------------------- STACK TESTING (w/ INTEGERS)" << std::endl;
+	stackTester<int>();
+	std::cout << "-------------------------------------------------------------------- QUEUE TESTING (w/ INTEGERS)" << std::endl;
+	queueTester<int>();
+	std::cout << "-------------------------------------------------------------------- STACK TESTING (w/ CHARS)" << std::endl;
+	stackTester<char>();	
+	std::cout << "-------------------------------------------------------------------- QUEUE TESTING (w/ CHARS)" << std::endl;
+	queueTester<char>();		
+	std::cout << "-------------------------------------------------------------------- END OF TESTING" << std::endl;
 	
-	printForEmpty(intQueue.isEmpty());
-
-	for(int i = NODE_CNT; i > 0; i--){
-		intHolder = i + 0;
-		intQueue.insert(&intHolder);
-	}
-	printForEmpty(intQueue.isEmpty());
-
-	for(int i = 0; i < NODE_CNT; i++){
-		intQueue.next(&intHolder);
-		std::cout << "Next: " << intHolder;
-		intQueue.remove(&intHolder);
-		std::cout << ",  Removed: " << intHolder << std::endl;
-	}
-	
-	printForEmpty(intQueue.isEmpty());
-	intQueue.remove(&intHolder);
-
-}
-
-void queueTestChar(){
-	
-	printForEmpty(charQueue.isEmpty());
-
-	for(int i = NODE_CNT; i > 0; i--){
-		charHolder = i + 107;
-		charQueue.insert(&charHolder);
-	}
-	printForEmpty(charQueue.isEmpty());
-
-	for(int i = 0; i < NODE_CNT; i++){
-		charQueue.next(&charHolder);
-		std::cout << "Next: " << charHolder;
-		charQueue.remove(&charHolder);
-		std::cout << ",  Removed: " << charHolder << std::endl;
-	}
-	
-	printForEmpty(charStack.isEmpty());
-	intQueue.remove(&intHolder);
-
+	return 0;
 }
 
 
-void printForEmpty(bool input){
-	if(input) std::cout << "   The object is empty\n";
-	else{std::cout << "   The object holds data.\n";}
-}
+
+
+
+
